@@ -1,0 +1,141 @@
+<div id="center">  
+  <!-- Text preview section -->
+  <div id="textcollection">
+
+  </div>
+  <!-- More text section (hidden by default) -->
+  <span id="moreText" style="display: none;">
+
+  </span>
+
+  <!-- "Read More" button -->
+  <button id="readMoreButton" onclick="toggleReadMore()">Read More</button>
+</div>
+
+
+<style>
+#readMoreButton {
+  background: none;
+  border: none;
+  color: black; 
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none; 
+  align-items: center;
+  justify-content: center; 
+  box-sizing: border-box;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden; 
+}
+
+#readMoreButton::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+#readMoreButton::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease; 
+}
+
+#readMoreButton:hover::before,
+#readMoreButton:hover::after {
+  width: 50%; 
+}
+
+#readMoreButton:hover::before {
+  left: 0;
+}
+
+#readMoreButton:hover::after {
+  right: 0;
+}
+
+  #textcollection,
+  #moreText {
+
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+  }
+  #center{
+     justify-content: center; 
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #textcollection h2,
+  #moreText h2 {
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+  }
+
+  #textcollection h3,
+  #moreText h3 {
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+  }
+  
+  #textcollection p,
+  #textcollection ol,
+  #moreText ol,
+  #textcollection ul,
+  #moreText ul,
+  #moreText p {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+
+  }
+  @media only screen and (max-width: 980px) {
+#textcollection,
+  #moreText {
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+   
+
+  }
+}
+
+</style>
+
+
+
+  <!-- JavaScript function to toggle the visibility of moreText section -->
+  <script>
+    function toggleReadMore() {
+      var moreText = document.getElementById("moreText");
+      var readMoreButton = document.getElementById("readMoreButton");
+
+      if (moreText.style.display === "none") {
+        moreText.style.display = "block";
+        readMoreButton.innerHTML = "Read Less";
+      } else {
+        moreText.style.display = "none";
+        readMoreButton.innerHTML = "Read More";
+      }
+    }
+  </script>

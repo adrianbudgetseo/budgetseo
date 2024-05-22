@@ -1,0 +1,53 @@
+
+    <!-- JSON-LD code for BreadcrumbList -->
+    <script type="application/ld+json" id="breadcrumb">
+      {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": []
+      }
+      </script>
+<script>
+  function updateBreadcrumb() {
+      // Get the URL of the current page
+      var pageUrl = window.location.href;
+
+      // Split the URL into parts
+      var urlParts = pageUrl.split('/');
+
+      // Initialize the breadcrumb with the Home Page
+      var breadcrumbData = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Homepage",
+          "item": urlParts[0] + '//' + urlParts[2] + '/'
+        }]
+      };
+
+      // Build the breadcrumb based on the current URL
+      for (var i = 3; i < urlParts.length; i++) {
+        var category = decodeURIComponent(urlParts[i]);
+        if (category) {
+          breadcrumbData.itemListElement.push({
+            "@type": "ListItem",
+            "position": i - 1,
+            "name": category,
+            "item": urlParts.slice(0, i + 1).join('/')
+          });
+        }
+      }
+
+      // Update JSON-LD script content
+      var breadcrumbScript = document.getElementById('breadcrumb');
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbData, null, 2);
+  }
+
+  // Update the breadcrumb when the page initially loads
+  updateBreadcrumb();
+
+  // Update breadcrumb when URL changes (navigation)
+  window.addEventListener('popstate', updateBreadcrumb);
+</script>

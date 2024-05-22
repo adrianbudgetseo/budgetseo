@@ -1,0 +1,14 @@
+// The code below must be inserted in the collection banner section (It must replace the code that inserts the collection description on the page)
+{% assign paragraphs = collection.description | split: '</p>' %}
+{% assign first_paragraph = paragraphs[0] | replace: '<p>', '' %}
+<div class="collection-hero__description rte">{{ first_paragraph }}</div>
+
+// The code below must be inserted after the pagination area of the collection page to continue inserting the content
+{% assign paragraphs = collection.description | split: '</p>' %}
+{% assign remaining_content = paragraphs | slice: 1, paragraphs.size | join: '</p>' %}
+{% if remaining_content != blank %}
+  {% assign remaining_content = remaining_content | prepend: '<p>' %}
+{% endif %}
+<div class="collection-hero__description rte" style="max-width: 100%; margin: 0 auto;">
+  {{ remaining_content | replace: '<h2', '<h2 style="text-align: center; font-size: 1.8em;"' | replace: '<h3', '<h3 style="font-size: 1.5em;"' }}
+</div>

@@ -1,0 +1,91 @@
+<head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></head>
+<style>
+        .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .question {
+        cursor: pointer;
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column; /* Alteração para direção vertical */
+        align-items: flex-start; /* Alinhamento à esquerda */
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .question h3 {
+        margin: 0;
+    }
+
+    .arrow {
+        align-self: flex-end; /* Alinhamento à direita */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .answer {
+        display: none;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .question.expanded .arrow {
+        transform: rotate(180deg);
+    }
+
+    .question:hover {
+        background-color: #ddd;
+    }
+</style>
+<script>
+    function toggleAnswer(index) {
+        var questions = document.getElementsByClassName("question");
+        
+        for (var i = 0; i < questions.length; i++) {
+            var question = questions[i];
+            var answer = question.querySelector(".answer");
+            var arrow = question.querySelector(".arrow");
+            
+            if (i === index) {
+                if (answer.style.display === "none" || answer.style.display === "") {
+                    answer.style.display = "block";
+                    arrow.style.transform = "rotate(180deg)";
+                    question.classList.add("expanded");
+                } else {
+                    answer.style.display = "none";
+                    arrow.style.transform = "rotate(0deg)";
+                    question.classList.remove("expanded");
+                }
+            } else {
+                answer.style.display = "none";
+                arrow.style.transform = "rotate(0deg)";
+                question.classList.remove("expanded");
+            }
+        }
+    }
+</script>
+<div itemscope itemtype="https://schema.org/FAQPage">
+    <div class="faq-container" >
+        <div class="question" onclick="toggleAnswer(0)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Are your crystals natural and authentic?</h3>
+            <i class="arrow fas fa-chevron-down"></i>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p class="answer" itemprop="text">Absolutely! We take great pride in offering only natural, authentic, and ethically sourced crystals from around the world. Each crystal is carefully handpicked to ensure its quality and energetic properties.</p>
+            </div>
+        </div>
+        <div class="question" onclick="toggleAnswer(1)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name">Are your crystals natural and authentic?</h3>
+            <i class="arrow fas fa-chevron-down"></i>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p class="answer" itemprop="text">Absolutely! We take great pride in offering only natural, authentic, and ethically sourced crystals from around the world. Each crystal is carefully handpicked to ensure its quality and energetic properties.</p>
+            </div>
+        </div>
+        <!-- Add more questions and answers as needed -->
+    </div>
+</div>
